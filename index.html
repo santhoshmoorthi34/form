@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form validation</title>
+    <link rel="stylesheet" href="form.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <form id="form">
+            <h2>LOGIN<span>...</span></h2>
+            <label for="name">Name</label>
+            <input type="text" placeholder="Enter the name" id="name">
+            <p id="NameError"></p>
+
+            <label for="name">email</label>
+            <input type="text" placeholder=" email" id="email">
+            <p id="EmailError"></p>
+
+            <label for="password">password</label>
+            <input type="text" placeholder=" password" id="password">
+            <p id="PasswordError"></p>
+
+            <button class="submit" id="submit"> submit </button>
+            <button class="reset" id="reset"> reset </button>
+
+        </form>
+
+
+    </div>
+
+
+
+    <script>
+        //     document.getElementById('form').addEventListener('submit', function (event) {
+        //         event.preventDefault();
+
+
+        //         let name = document.getElementById("name").value
+        //         let email = document.getElementById("email").value
+        //         let psaaword = document.getElementById("password").value
+        //         let reset = document.getElementById("reset")
+
+
+        //         if (name === '') {
+
+
+        //             alert("entrr the name")
+        //             return;
+        //         }
+
+        //         if (email === '') {
+        //             alert("enter the email")
+        //             return;
+        //         }
+
+        //         localStorage.setItem("name", name);
+        //         localStorage.setItem("email", email);
+        //     })
+
+        //    let reset=document.getElementById("form")
+
+        //     reset.addEventListener('reset', (event)=> {
+
+
+        //         document.getElementById("name").value
+        //         document.getElementById("email").value
+
+        //         localStorage.removeItem("name");
+        //         localStorage.removeItem("email");
+
+        //     })
+
+
+        let form = document.getElementById("form")
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            let name = document.getElementById("name").value
+            let email = document.getElementById("email").value
+            let psaaword = document.getElementById("password").value
+
+
+            if (name === "") {
+
+                let Error = document.getElementById("NameError")
+                Error.textContent = "name is required"
+
+                isvalid = false;
+
+
+            }
+            let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (email === '' || !emailRegex.test(email)) {
+
+                let Error = document.getElementById("EmailError")
+                EmailError.textContent = "email is required"
+
+                isvalid = false;
+            }
+
+
+
+            localStorage.setItem("name", name);
+            localStorage.setItem("email", email);
+
+
+        })
+
+
+        let reset = document.getElementById("reset")
+        reset.addEventListener("click", (e) => {
+            e.preventDefault();
+
+
+            localStorage.removeItem("name");
+            localStorage.removeItem("email");
+
+            document.getElementById("name").value = '';
+            document.getElementById("email").value = '';
+
+        })
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
